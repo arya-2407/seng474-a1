@@ -4,7 +4,7 @@ from sklearn.tree import _tree
 
 def prune_tree(tree, X_val, y_val):
     """
-    Prune a decision tree by iteratively removing nodes if it improves validation accuracy.
+    Reduced Error Pruning
     """
     def prune_node(node):
         """
@@ -35,6 +35,5 @@ def prune_tree(tree, X_val, y_val):
             else:
                 prune_tree.best_val_accuracy = pruned_accuracy  # Update best accuracy
 
-    # Fix: Use `tree.predict(X_val)` instead of `clf.predict(X_val)`
-    prune_tree.best_val_accuracy = accuracy_score(y_val, tree.predict(X_val))  # Store best accuracy
+    prune_tree.best_val_accuracy = accuracy_score(y_val, tree.predict(X_val)) 
     prune_node(0)  # Start pruning from the root
